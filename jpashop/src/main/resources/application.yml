@@ -1,7 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop;MVCC=TRUE
-    # MVCC : Multi-Version Concurrency Control
+    url: jdbc:h2:tcp://localhost/~/jpashop
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -9,14 +8,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-      # 자동으로 테이블을 만들어주는 모드 : Application 실행시점에 내가 가진 Table을 다 지우고 다시 생성한다.
+
     properties:
       hibernate:
 #        show_sql: true
-        #hibernate가 생성하는 SQL을 System.out 로 출력한다.
         format_sql: true
 
 logging:
   level:
     org.hibernate.SQL: debug
-    #hibernate의 SQL모드를 Debug 모드로 사용하겠다 : hibernate 가 생성하는 SQL이 다 logger로 출력이 된다.
+    org.hibernate.type: trace
