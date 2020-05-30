@@ -20,7 +20,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/jpashop/build.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -33,13 +33,21 @@
       <option name="presentableId" value="Default" />
       <updated>1589975061793</updated>
       <workItem from="1590059866983" duration="9000" />
+      <workItem from="1590843969269" duration="199000" />
     </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="648" y="300" key="FileChooserDialogImpl" timestamp="1590059873113">
+    <state x="648" y="300" key="FileChooserDialogImpl" timestamp="1590844112672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="648" y="300" key="FileChooserDialogImpl/0.0.1920.1040/0.1080.1920.1080@0.0.1920.1040" timestamp="1590059873113" />
+    <state x="648" y="300" key="FileChooserDialogImpl/0.0.1920.1040/0.1080.1920.1080@0.0.1920.1040" timestamp="1590844112672" />
+    <state x="378" y="337" key="new project wizard" timestamp="1590844164177">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="378" y="337" key="new project wizard/0.0.1920.1040/0.1080.1920.1080@0.0.1920.1040" timestamp="1590844164177" />
   </component>
 </project>
