@@ -20,7 +20,7 @@ public class JpaMain {
         tx.begin();
 
         try{
-            Member member = new Member();
+            //Member member = new Member();
 
             /* INSERT Member
             member.setId(1L);
