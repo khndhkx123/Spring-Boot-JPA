@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>SignUp</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="fragment/bodyheader :: bodyheader"/>
+
+    <form role="form" action="/members/signup" th:object="${memberForm}" method="post">
+        <div class="form-label-group">
+            <input type="text" th:field="*{mb_name}" class="form-control" placeholder="Name" required autofocus>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" th:field="*{mb_id}" class="form-control" placeholder="User ID" required autofocus>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" th:field="*{mb_pw}" class="form-control" placeholder="Password" required autofocus>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+    </form>
+</div>
+
+</body>
+</html>
