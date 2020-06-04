@@ -7,10 +7,7 @@
 
     <div th:replace="fragment/bodyheader :: bodyheader"/>
 
-    <form role="form" action="/members/signup" th:object="${memberForm}" method="post">
-        <div class="form-label-group">
-            <input type="text" th:field="*{mb_name}" class="form-control" placeholder="Name" required autofocus>
-        </div>
+    <form role="form" action="/members/signin" th:object="${memberForm}" method="post">
 
         <div class="form-label-group">
             <input type="text" th:field="*{mb_id}" class="form-control" placeholder="User ID" required autofocus>
@@ -20,7 +17,7 @@
             <input type="password" th:field="*{mb_pw}" class="form-control" placeholder="Password" required autofocus>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
     </form>
     <div th:replace="fragment/footer :: footer"/>

@@ -26,7 +26,7 @@ public class MemberController {
 
     @PostMapping("/members/signup")
     public String signup(MemberForm form){
-        log.info("SIGNIN");
+        log.info("SIGNUP");
         Member member = new Member();
         member.setMb_id(form.mb_id);
         member.setMb_pw(form.mb_pw);
@@ -36,4 +36,20 @@ public class MemberController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/members/signin")
+    public String signin_info(Model model){
+        log.info("SINGING IN");
+        model.addAttribute("memberForm", new MemberForm());
+        return "members/signin";
+    }
+
+    @PostMapping("/members/signin")
+    public String signin(MemberForm form){
+        log.info("SIGNIN");
+        memberService.signin(form.getMb_id(), form.getMb_pw());
+        return "redirect:/";
+    }
+
+
 }

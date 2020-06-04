@@ -15,7 +15,14 @@ public class MemberService {
 
     @Transactional
     public void signup(Member member){
-        System.out.println(member.getMb_id() + " " + member.getMb_name() + " " + member.getMb_pw() + " " + member.getMb_ident());
         memberRepository.save(member);
+    }
+
+    public void signin(String mb_id, String mb_pw){
+        Member member = memberRepository.findOne(mb_id);
+        if(member != null && member.getMb_pw().equals(mb_pw)){
+            System.out.println("Login SUCCESS!");
+        }
+        else System.out.println("ERROR while LOGIN");
     }
 }
