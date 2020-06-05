@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,6 +21,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    //회원가입 GET
     @GetMapping("/members/signup")
     public String createForm(Model model){
         log.info("CREATE FORM");
@@ -24,6 +29,7 @@ public class MemberController {
         return "members/signup";
     }
 
+    //회원가입 POST
     @PostMapping("/members/signup")
     public String signup(MemberForm form){
         log.info("SIGNUP");
@@ -37,6 +43,7 @@ public class MemberController {
         return "redirect:/";
     }
 
+    //로그인 GET
     @GetMapping("/members/signin")
     public String signin_info(Model model){
         log.info("SINGING IN");
@@ -44,12 +51,16 @@ public class MemberController {
         return "members/signin";
     }
 
+    //로그인 POST
     @PostMapping("/members/signin")
-    public String signin(MemberForm form){
+    public String signin(MemberForm form, Model model){
         log.info("SIGNIN");
-        memberService.signin(form.getMb_id(), form.getMb_pw());
-        return "redirect:/";
+        Member member = memberService.signin(form.getMb_id(), form.getMb_pw());
+
+        if(member != null){
+            model.addAttribute("member", member);
+            return "main";
+        }
+        else return "redirect:/";
     }
-
-
 }

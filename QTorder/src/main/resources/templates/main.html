@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/header :: header">
+    <title>Adullam QT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div th:replace="fragment/bodyheader :: bodyheader"/>
+
+    <div class="jumbotron">
+        <h1>AdullamQT</h1>
+        <p class="lead">아둘람 큐티 주문하기 !</p>
+        <p>
+            <div th:switch="${member.mb_ident}">
+                <p class="lead" th:case="0" th:text="${member.mb_name} + '관리자님 환영합니다.'"></p>
+                <p class="lead" th:case="1" th:text="${member.mb_name} + '목사님 환영합니다.'"></p>
+                <p class="lead" th:case="2" th:text="${member.mb_name} + '성도님 환영합니다.'"></p>
+            </div>
+            <a class="btn btn-lg btn-secondary" th:if="${member.mb_ident} == 0 or ${member.mb_ident} == 1" href="/members/signin">주문서 조회</a>
+
+            <a class="btn btn-lg btn-secondary" href="/members/signup">전체 주문현황 보기</a>
+            <a class="btn btn-lg btn-secondary" href="/members/signup">매일성경 주문하기</a>
+        </p>
+    </div>
+
+    <div th:replace="fragment/footer :: footer"/>
+
+</div>
+</body>
+</html>
