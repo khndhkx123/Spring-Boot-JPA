@@ -5,31 +5,68 @@ import java.util.Date;
 
 @Entity
 /** IF want to mapping the name of DB table : @Table(name="USER")**/
-public class Member {
-
-    @Id/**@Id is for telling persistence primary-key**/
+public class Member{
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    /** IF want to mapping the column name of DB Attribute : @Column(name = "username")**/
-    @Column(name = "name")
+    @Column(name = "USERNAME")
     private String username;
 
-    private Integer age;
+    @Column(name = "TEAM_ID")
+    private Long teamId;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+    public Long getId() {
+        return id;
+    }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
+    public String getUsername() {
+        return username;
+    }
 
-    @Lob
-    private String description;
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    /** 기본 생성자 **/
-    public Member(){}
+    public Long getTeamId() {
+        return teamId;
+    }
 
-    /**@Getter and @Setter**/
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
 }
+
+
+//public class Member {
+//
+//    @Id/**@Id is for telling persistence primary-key**/
+//    private Long id;
+//
+//    /** IF want to mapping the column name of DB Attribute : @Column(name = "username")**/
+//    @Column(name = "name")
+//    private String username;
+//
+//    private Integer age;
+//
+//    @Enumerated(EnumType.STRING)
+//    private RoleType roleType;
+//
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date createdDate;
+//
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date lastModifiedDate;
+//
+//    @Lob
+//    private String description;
+//
+//    /** 기본 생성자 **/
+//    public Member(){}
+//
+//    /**@Getter and @Setter**/
+//}
