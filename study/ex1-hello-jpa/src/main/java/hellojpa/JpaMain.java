@@ -28,13 +28,13 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeamId(team.getId());
+            member.setTeam(team);
             em.persist(member);
 
             /**해당 상태에서 만약 어떤 멤버가 무슨 팀에 소속되어 있는지 찾는다 가정할 때 **/
             Member findMember = em.find(Member.class, member.getId());
-            Long findTeamId = findMember.getTeamId();
-            Team findTeam = em.find(Team.class, findTeamId);
+            Team findTeam = findMember.getTeam();
+            System.out.println("FINDTEAM = " + findTeam.getName());
             /** 연관관계가 없기 때문에 계속해서 여러 검색을 해야한다는 단점이 있다 **/
 
             //Member member = new Member();
