@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
 
@@ -31,11 +32,16 @@ public class JpaMain {
             member.setTeam(team);
             em.persist(member);
 
-            /**해당 상태에서 만약 어떤 멤버가 무슨 팀에 소속되어 있는지 찾는다 가정할 때 **/
+            em.flush();
+            em.clear();
+
+            /** 양방향 매핑 이후 Member 에서 Team 으로, Team에서 Member로 **/
             Member findMember = em.find(Member.class, member.getId());
-            Team findTeam = findMember.getTeam();
-            System.out.println("FINDTEAM = " + findTeam.getName());
-            /** 연관관계가 없기 때문에 계속해서 여러 검색을 해야한다는 단점이 있다 **/
+            List<Member> members = findMember.getTeam().getMembers();
+
+            for(Member m : members){
+                System.out.println("m = " + m.getUsername());
+            }
 
             //Member member = new Member();
 
