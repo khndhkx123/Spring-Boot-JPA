@@ -21,57 +21,17 @@ public class JpaMain {
         tx.begin();
 
         try{
-
-            /**CHAPTER 5 **/
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
-
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+
             em.persist(member);
 
-            em.flush();
-            em.clear();
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
+            /** Team에 손을 댓는데 member에 관한 UPDATE 쿼리가 날라가는 부분 : 외래키가 다른 테이블에 있기 때문 **/
 
-            /** 양방향 매핑 이후 Member 에서 Team 으로, Team에서 Member로 **/
-            Member findMember = em.find(Member.class, member.getId());
-            List<Member> members = findMember.getTeam().getMembers();
-
-            for(Member m : members){
-                System.out.println("m = " + m.getUsername());
-            }
-
-            //Member member = new Member();
-
-            /* INSERT Member
-            member.setId(1L);
-            member.setName("HelloJPA");
-            em.persist(member);
-             */
-            /** Only INSERT need em.persist(member)**/
-
-            /* SEARCH Member
-            Member findMember = em.find(Member.class, 1L);
-             */
-
-            /* SEARCH Multi-Member (select * from member)
-            List<Member> result = em.createQuery("select m from Member as m", Member.class).getResultList();
-            List<Member> result = em.createQuery("select m from Member as m where name = ???", Member.class).getResultList();
-             */
-            /** IF user want some specific table of join / select where... Need to use JPQL **/
-
-            /* DELETE Member
-            Member findMember = em.find(Member.class, 1L);
-            em.remove(findMember);
-             */
-
-            /* UPDATE Member
-            Member findMember = em.find(Member.class, 1L);
-            findMember.setName("HelloJPA");
-             */
-            /** JPA will detect changes before transaction send, IF changed -> update query**/
+            em.persist(team);
 
             tx.commit();
         } catch (Exception e){

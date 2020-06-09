@@ -12,7 +12,8 @@ public class Team {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "team") // Member Entity 안에 Team team 이랑 같이 연관되어 있다는 뜻.
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
     private List<Member> members = new ArrayList<Member>();
 
     public Long getId() {
