@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Item {
 
     @Id
-    private int item_id;
+    private int item_no;
     private String item_name;
     private int item_price;
 }
