@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,7 +31,7 @@ public class MemberController {
     //회원가입 POST
     @PostMapping("/members/signup")
     public String signup(MemberForm form){
-        log.info("SIGNUP");
+        log.info("SIGNUP : POST");
         Member member = new Member();
         member.setMb_id(form.mb_id);
         member.setMb_pw(form.mb_pw);
@@ -46,21 +45,32 @@ public class MemberController {
     //로그인 GET
     @GetMapping("/members/signin")
     public String signin_info(Model model){
-        log.info("SINGING IN");
+        log.info("SINGIN : GET");
         model.addAttribute("memberForm", new MemberForm());
         return "members/signin";
     }
 
     //로그인 POST
     @PostMapping("/members/signin")
-    public String signin(MemberForm form, Model model){
-        log.info("SIGNIN");
+    public String signin(MemberForm form, Model model, HttpServletRequest request){
+        log.info("SIGNIN : POST");
         Member member = memberService.signin(form.getMb_id(), form.getMb_pw());
+        HttpSession session = request.getSession();
 
         if(member != null){
             model.addAttribute("member", member);
+            session.setAttribute("mb_id",member.getMb_id());
             return "main";
         }
         else return "redirect:/";
+    }
+
+    @GetMapping("/members/signout")
+    public String signout(HttpSession session) throws Exception{
+        log.info("LOGOUT : GET");
+
+        memberService.signout(session);
+
+        return "redirect:/";
     }
 }
