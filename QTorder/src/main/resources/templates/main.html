@@ -23,11 +23,38 @@
             <a class="btn btn-lg btn-secondary" th:if="${member.mb_ident} == 0 or ${member.mb_ident} == 1" href="/members/signin">주문서 조회</a>
 
             <a class="btn btn-lg btn-primary" href="/members/signup">전체 주문현황 보기</a>
-            <a class="btn btn-lg btn-primary" href="/members/signup">매일성경 주문하기</a>
+            <a class="btn btn-lg btn-primary" href="/order">매일성경 주문하기</a>
             <a class="btn btn-lg btn-secondary" href="/members/signout">로그아웃</a>
         </p>
     </div>
-
+<!--
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>상품이름</th>
+            <th>수량</th>
+            <th>가격</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${orders}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.orderItems[0].item.name}"></td>
+            <td th:text="${item.orderItems[0].orderPrice}"></td>
+            <td th:text="${item.orderItems[0].count}"></td>
+            <td th:text="${item.status}"></td>
+            <td th:text="${item.orderDate}"></td>
+            <td>
+                <a th:if="${item.status.name() == 'ORDER'}" href="#"
+                   th:href="'javascript:cancel('+${item.id}+')'"
+                   class="btn btn-danger">CANCEL</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+-->
     <div th:replace="fragment/footer :: footer"/>
 
 </div>

@@ -13,6 +13,10 @@ public class ItemRepository {
 
     private final EntityManager em;
 
+    public Item findOne(int item_no){
+        return em.find(Item.class, item_no);
+    }
+
     public List<Item> findAll(){
         return em.createQuery("select i from Item i", Item.class).getResultList();
     }

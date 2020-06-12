@@ -23,4 +23,17 @@ public class OrderItem {
     private int order_price;
     private int order_count;
 
+    public static OrderItem createOrderItem(Item item, int order_price, int count){
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrder_price(order_price);
+        orderItem.setOrder_count(count);
+
+        return orderItem;
+    }
+
+    public int getTotalPrice() {
+        return getOrder_price() * getOrder_count();
+    }
+
 }
