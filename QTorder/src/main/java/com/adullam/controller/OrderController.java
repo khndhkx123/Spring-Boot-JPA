@@ -1,6 +1,7 @@
 package com.adullam.controller;
 
 import com.adullam.domain.Item;
+import com.adullam.service.CartService;
 import com.adullam.service.ItemService;
 import com.adullam.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
+    private final CartService cartService;
     private final MemberService memberService;
     private final ItemService itemService;
 
@@ -30,10 +32,12 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public String order(HttpSession session, @RequestParam("item_no") int item_no, @RequestParam("count") int count){
+    public String order(HttpSession session, @RequestParam("item_no") int item_no, @RequestParam("count") int count, Model model){
         System.out.println("---------- HTTPSESSION TEST : ORDER ----------");
         System.out.println(session.getAttribute("mb_id") + " " + item_no + " " + count);
         System.out.println("---------- HTTPSESSION TEST : ORDER ----------");
+        cartService.addCart((String)session.getAttribute("mb_id"), item_no, count);
+
         return "redirect:/order";
     }
 }

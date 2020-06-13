@@ -9,23 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "orders")
 @Getter @Setter
-public class Order {
-
+public class Orders {
     @Id
+    @GeneratedValue
     private int order_no;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mb_id")
-    private Member member;
-
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime order_date;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus order_status;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mb_id")
+    private Member member;
+
+    @OneToMany(mappedBy = "orders")
+    private List<Cart> carts = new ArrayList<>();
 }

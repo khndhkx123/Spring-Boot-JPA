@@ -15,9 +15,32 @@
         </div>
         <div class="form-group">
             <label for="count">주문수량</label>
-            <input type="number" name="count" class="form-control" id="count" placeholder="주문 수량을 입력하세요"></div>
+            <input type="number" name="count" class="form-control" id="count" placeholder="주문 수량을 입력하세요">
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>상품명</th>
+            <th>상품가격</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cart : ${cartlist}">
+            <td th:text="${cart.}"></td>
+            <td th:text="${item.id}"></td>
+            <!-- 장바구니 해당 항목 삭제
+            <td>
+                <a th:if="${item.status.name() == 'ORDER'}" href="#"
+                   th:href="'javascript:cancel('+${item.id}+')'"
+                   class="btn btn-danger">CANCEL</a>
+            </td>
+            -->
+        </tr>
+        </tbody>
+    </table>
     <br/>
     <div th:replace="fragment/footer :: footer"/>
 </div>
