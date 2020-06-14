@@ -23,4 +23,7 @@ public class Cart {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_no")
     private Orders orders;
+
+    private int count;
+    private int price;
 }

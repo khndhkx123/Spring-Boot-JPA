@@ -1,5 +1,6 @@
 package com.adullam.controller;
 
+import com.adullam.domain.Cart;
 import com.adullam.domain.Item;
 import com.adullam.service.CartService;
 import com.adullam.service.ItemService;
@@ -25,8 +26,14 @@ public class OrderController {
     @GetMapping("/order")
     public String createForm(Model model){
         List<Item> items = itemService.findItems();
+        List<Cart> cartlist = cartService.findCart();
+
+        for(int i = 0; i<cartlist.size(); ++i){
+            System.out.println(cartlist.get(i).mb_name + " " + cartlist.get(i).item_name + " " + cartlist.get(i).item_count + " " + cartlist.get(i).item_price);
+        }
 
         model.addAttribute("items",items);
+        model.addAttribute("cartlist", cartlist);
 
         return "order/orderForm";
     }

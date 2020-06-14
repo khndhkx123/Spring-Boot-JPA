@@ -22,15 +22,19 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>주문자</th>
             <th>상품명</th>
-            <th>상품가격</th>
+            <th>상품수량</th>
+            <th>가격</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="cart : ${cartlist}">
-            <td th:text="${cart.}"></td>
-            <td th:text="${item.id}"></td>
+            <td th:text="${cart.mb_name}"></td>
+            <td th:text="${cart.item_name}"></td>
+            <td th:text="${cart.item_count}"></td>
+            <td th:text="${cart.item_price}"></td>
             <!-- 장바구니 해당 항목 삭제
             <td>
                 <a th:if="${item.status.name() == 'ORDER'}" href="#"

@@ -28,8 +28,15 @@ public class CartService {
 
         Cart cart = new Cart();
         cart.setMember(member);
+        cart.setItem(item);
+        cart.setCount(count);
+        cart.setPrice(item.getItem_price()*count);
 
         cartRepository.save(cart);
+    }
+
+    public List<Cart> findCart(){
+        return cartRepository.findAll();
     }
 
 }
