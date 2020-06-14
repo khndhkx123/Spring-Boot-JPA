@@ -3,6 +3,7 @@ package com.adullam.service;
 import com.adullam.domain.Cart;
 import com.adullam.domain.Item;
 import com.adullam.domain.Member;
+import com.adullam.form.CartDTO;
 import com.adullam.repository.CartRepository;
 import com.adullam.repository.ItemRepository;
 import com.adullam.repository.MemberRepository;
@@ -35,7 +36,7 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    public List<Cart> findCart(){
+    public List<CartDTO> findCart(){
         return cartRepository.findAll();
     }
 
