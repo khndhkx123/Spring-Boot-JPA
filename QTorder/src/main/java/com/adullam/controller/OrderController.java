@@ -2,6 +2,7 @@ package com.adullam.controller;
 
 import com.adullam.domain.Cart;
 import com.adullam.domain.Item;
+import com.adullam.domain.Orders;
 import com.adullam.form.CartDTO;
 import com.adullam.service.CartService;
 import com.adullam.service.ItemService;
@@ -35,7 +36,7 @@ public class OrderController {
         /** if(mb_id == null) {로그인 해주시기 바랍니다.} **/
 
         List<Item> items = itemService.findItems();
-        List<CartDTO> cartlist = cartService.findCart(mb_id);
+        List<CartDTO> cartlist = cartService.findCartDTO(mb_id);
 
         model.addAttribute("items",items);
         model.addAttribute("cartlist", cartlist);

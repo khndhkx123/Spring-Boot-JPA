@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -30,5 +31,13 @@ public class MemberService {
 
     public void signout(HttpSession session) throws Exception{
         session.invalidate();
+    }
+
+    public List<Member> findAll(){
+        return memberRepository.findAll();
+    }
+
+    public Member findOne(String mb_id){
+        return memberRepository.findOne(mb_id);
     }
 }

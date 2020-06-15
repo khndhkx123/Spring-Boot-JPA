@@ -42,8 +42,12 @@ public class CartService {
         cartRepository.remove(cart);
     }
 
-    public List<CartDTO> findCart(String mb_id){
-        return cartRepository.findAll(mb_id);
+    public List<CartDTO> findCartDTO(String mb_id){
+        return cartRepository.findAllDTO(mb_id);
+    }
+
+    public List<Cart> findCart(){
+        return cartRepository.findAll();
     }
 
 }
