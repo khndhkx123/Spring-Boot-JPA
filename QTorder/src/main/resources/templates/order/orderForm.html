@@ -5,7 +5,7 @@
 <div class="container">
     <div th:replace="fragment/bodyheader :: bodyheader"/>
 
-    <form role="form" action="/order" method="post">
+    <form role="form" action="/addcart" method="post">
         <div class="form-group">
             <label for="item">상품명</label>
             <select name="item_no" id="item" class="form-control">
@@ -17,37 +17,45 @@
             <label for="count">주문수량</label>
             <input type="number" name="count" class="form-control" id="count" placeholder="주문 수량을 입력하세요">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Addcart</button>
     </form>
     <br/>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>주문자</th>
-            <th>상품명</th>
-            <th>상품수량</th>
-            <th>가격</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="cart : ${cartlist}">
-            <td th:text="${cart.mb_name}"></td>
-            <td th:text="${cart.item_name}"></td>
-            <td th:text="${cart.item_count}"></td>
-            <td th:text="${cart.item_price}"></td>
-            <!-- 장바구니 해당 항목 삭제
-            <td>
-                <a th:if="${item.status.name() == 'ORDER'}" href="#"
-                   th:href="'javascript:cancel('+${item.id}+')'"
-                   class="btn btn-danger">CANCEL</a>
-            </td>
-            -->
-        </tr>
-        </tbody>
-    </table>
+    <form role="form" action="/order" method="post">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>주문자</th>
+                <th>상품명</th>
+                <th>상품수량</th>
+                <th>가격</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cart : ${cartlist}">
+                <td th:text="${cart.mb_name}"></td>
+                <td th:text="${cart.item_name}"></td>
+                <td th:text="${cart.item_count}"></td>
+                <td th:text="${cart.item_price}"></td>
+                <td>
+                    <a th:href="'javascript:deleteCart('+${cart.cart_no}+')'" class="btn btn-danger">DELETE</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Order</button>
+    </form>
     <br/>
     <div th:replace="fragment/footer :: footer"/>
 </div>
 </body>
+<script>
+    function deleteCart(id){
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/deletecart/" + id);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 </html>

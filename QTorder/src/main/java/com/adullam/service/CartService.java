@@ -36,6 +36,12 @@ public class CartService {
         cartRepository.save(cart);
     }
 
+    @Transactional
+    public void deleteCart(int cart_no){
+        Cart cart = cartRepository.findOne(cart_no);
+        cartRepository.remove(cart);
+    }
+
     public List<CartDTO> findCart(String mb_id){
         return cartRepository.findAll(mb_id);
     }

@@ -26,4 +26,6 @@ public class Orders {
 
     @OneToMany(mappedBy = "orders")
     private List<Cart> carts = new ArrayList<>();
+
+    private int order_price;
 }

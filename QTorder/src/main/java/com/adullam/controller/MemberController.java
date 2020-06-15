@@ -60,6 +60,7 @@ public class MemberController {
         if(member != null){
             model.addAttribute("member", member);
             session.setAttribute("mb_id",member.getMb_id());
+            session.setAttribute("mb_pw",member.getMb_pw());
             return "main";
         }
         else return "redirect:/";

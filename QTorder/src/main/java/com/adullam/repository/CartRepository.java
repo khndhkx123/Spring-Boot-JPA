@@ -21,8 +21,16 @@ public class CartRepository {
         em.persist(cart);
     }
 
+    public void remove(Cart cart){
+        em.remove(cart);
+    }
+
+    public Cart findOne(int cart_no){
+        return em.find(Cart.class,cart_no);
+    }
+
     public List<CartDTO> findAll(String mb_id){
-        String sql = "select m.mb_name mb_name,i.item_name item_name,ct.count item_count, ct.price item_price " +
+        String sql = "select ct.cart_no cart_no,m.mb_name mb_name,i.item_name item_name,ct.count item_count, ct.price item_price " +
                 "from (select * from cart where mb_id = '"+mb_id+"') as ct " +
                 "join member m on m.mb_id = ct.mb_id " +
                 "join item i on ct.item_no = i.item_no";
