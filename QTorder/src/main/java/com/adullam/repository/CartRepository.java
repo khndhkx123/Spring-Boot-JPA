@@ -21,11 +21,16 @@ public class CartRepository {
         em.persist(cart);
     }
 
-    public List<CartDTO> findAll(){
-        String sql = "select m.mb_name mb_name, i.item_name item_name, c.count item_count, c.price item_price from cart as c join member as m on c.mb_id = m.mb_id join item as i on c.item_no = i.item_no";
+    public List<CartDTO> findAll(String mb_id){
+        String sql = "select m.mb_name mb_name,i.item_name item_name,ct.count item_count, ct.price item_price " +
+                "from (select * from cart where mb_id = '"+mb_id+"') as ct " +
+                "join member m on m.mb_id = ct.mb_id " +
+                "join item i on ct.item_no = i.item_no";
+        System.out.println(sql);
         SQLQuery sqlQuery = em.createNativeQuery(sql).unwrap(SQLQuery.class);
         Query query = sqlQuery.setResultTransformer(Transformers.aliasToBean(CartDTO.class));
         List<CartDTO> result = query.getResultList();
+        em.clear();
         return result;
     }
 }

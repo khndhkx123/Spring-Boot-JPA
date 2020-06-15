@@ -36,8 +36,8 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    public List<CartDTO> findCart(){
-        return cartRepository.findAll();
+    public List<CartDTO> findCart(String mb_id){
+        return cartRepository.findAll(mb_id);
     }
 
 }

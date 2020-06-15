@@ -25,9 +25,10 @@ public class OrderController {
     private final ItemService itemService;
 
     @GetMapping("/order")
-    public String createForm(Model model){
+    public String createForm(Model model, HttpSession session){
+        String mb_id = (String)session.getAttribute("mb_id");
         List<Item> items = itemService.findItems();
-        List<CartDTO> cartlist = cartService.findCart();
+        List<CartDTO> cartlist = cartService.findCart(mb_id);
 
         model.addAttribute("items",items);
         model.addAttribute("cartlist", cartlist);
