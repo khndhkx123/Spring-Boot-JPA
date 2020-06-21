@@ -2,11 +2,13 @@ package com.adullam.controller;
 
 import com.adullam.domain.Cart;
 import com.adullam.domain.Item;
+import com.adullam.domain.Member;
 import com.adullam.domain.Orders;
 import com.adullam.form.CartDTO;
 import com.adullam.service.CartService;
 import com.adullam.service.ItemService;
 import com.adullam.service.MemberService;
+import com.adullam.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,7 @@ public class OrderController {
     private final CartService cartService;
     private final MemberService memberService;
     private final ItemService itemService;
+    private final OrderService orderService;
     
     //주문화면으로가기
     @GetMapping("/order")
@@ -48,6 +51,9 @@ public class OrderController {
     @PostMapping("/order")
     public String Order(HttpSession session){
         log.info("ORDER : POST");
+        String mb_id = (String)session.getAttribute("mb_id");
+        orderService.order(mb_id);
+
         return "home";
     }
     

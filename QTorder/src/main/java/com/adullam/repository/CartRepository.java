@@ -45,4 +45,8 @@ public class CartRepository {
     public List<Cart> findAll(){
         return em.createQuery("select c from Cart c", Cart.class).getResultList();
     }
+
+    public List<Cart> findByMember(String mb_id){
+        return em.createQuery("select c from Cart c where c.member.mb_id = "+mb_id, Cart.class).getResultList();
+    }
 }

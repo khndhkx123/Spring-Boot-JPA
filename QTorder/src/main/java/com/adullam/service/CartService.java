@@ -50,4 +50,8 @@ public class CartService {
         return cartRepository.findAll();
     }
 
+    public List<Cart> findByMember(String mb_id){
+        return cartRepository.findByMember(mb_id);
+    }
+
 }
