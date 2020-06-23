@@ -2,12 +2,11 @@ package hellojpa;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 /** IF want to mapping the name of DB table : @Table(name="USER")**/
-public class Member{
+public class Member extends BaseEntity{
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
