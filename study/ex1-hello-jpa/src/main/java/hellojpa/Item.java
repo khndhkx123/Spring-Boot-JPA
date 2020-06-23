@@ -3,7 +3,7 @@ package hellojpa;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn//DTYPE 의 추가(Album / Movie / Book), (name = "DIS_TYPE") 도 가능.
 public class Item {
 
