@@ -3,9 +3,9 @@ package hellojpa;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn//DTYPE 의 추가(Album / Movie / Book), (name = "DIS_TYPE") 도 가능.
-public class Item {
+public abstract class Item {
 
     @Id @GeneratedValue
     private Long id;
