@@ -21,17 +21,18 @@ public class JpaMain {
         tx.begin();
 
         try{
-            Member member = new Member();
-            member.setUsername("member1");
+            Movie movie = new Movie();
+            movie.setDirector("kioni");
+            movie.setActor("kioni2");
+            movie.setName("GOOOOOOD MOVIE");
+            movie.setPrice(100000);
 
-            em.persist(member);
+            em.persist(movie);
 
-            Team team = new Team();
-            team.setName("teamA");
-            team.getMembers().add(member);
-            /** Team에 손을 댓는데 member에 관한 UPDATE 쿼리가 날라가는 부분 : 외래키가 다른 테이블에 있기 때문 **/
+            em.flush();
+            em.clear();
 
-            em.persist(team);
+            Movie findMovie = em.find(Movie.class, movie.getId());
 
             tx.commit();
         } catch (Exception e){
