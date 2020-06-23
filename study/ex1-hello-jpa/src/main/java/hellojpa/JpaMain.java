@@ -22,14 +22,26 @@ public class JpaMain {
         tx.begin();
 
         try{
-            Member member = new Member();
-            member.setCreatedBy("KIM");
-            member.setCreateDate(LocalDateTime.now());
 
-            em.persist(member);
+            Child child1 = new Child();
+            Child child2 = new Child();
+
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
+
+            em.persist(parent);
+            //em.persist(child1);
+            //em.persist(child2);
+            //cascade로 인해 생략된다.
 
             em.flush();
             em.clear();
+
+            Parent findParent = em.find(Parent.class, parent.getId());
+            findParent.getChildList().remove(0);
+            //orphanRemoval에 의해 List 에서 빠진 Child 는 바로 삭제해 버리는기능이다.
+
 
             tx.commit();
         } catch (Exception e){
