@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f275df6-b0ae-4f30-9654-a661c69834fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="1f275df6-b0ae-4f30-9654-a661c69834fb" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +39,7 @@
       <workItem from="1592876404547" duration="5000" />
       <workItem from="1592886948759" duration="21000" />
       <workItem from="1592886992090" duration="7000" />
+      <workItem from="1592983006467" duration="51000" />
     </task>
     <servers />
   </component>
@@ -48,13 +47,15 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="648" y="300" key="FileChooserDialogImpl" timestamp="1590844112672">
+    <state x="648" y="300" key="FileChooserDialogImpl" timestamp="1592983047781">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="648" y="300" key="FileChooserDialogImpl/0.0.1920.1040/0.1080.1920.1080@0.0.1920.1040" timestamp="1590844112672" />
-    <state x="378" y="337" key="new project wizard" timestamp="1590844164177">
+    <state x="648" y="300" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1592983047781" />
+    <state x="219" y="140" key="new project wizard" timestamp="1592983055462">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="378" y="337" key="new project wizard/0.0.1920.1040/0.1080.1920.1080@0.0.1920.1040" timestamp="1590844164177" />
+    <state x="219" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1592983055462" />
   </component>
 </project>
