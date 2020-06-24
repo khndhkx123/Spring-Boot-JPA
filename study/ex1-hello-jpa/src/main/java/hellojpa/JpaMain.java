@@ -24,11 +24,20 @@ public class JpaMain {
         try{
 
             Member member = new Member();
-            member.setUsername("hello");
+            member.setUsername("member1");
             member.setHomeAddress(new Address("city","street", "10000"));
-            member.setWorkPeriod(new Period());
+
+            member.getFavoriteFoods().add("치킨");
+            member.getFavoriteFoods().add("족발");
+            member.getFavoriteFoods().add("피자");
+
+            member.getAddressHistory().add(new Address("Excity", "Exstreet", "9999"));
 
             em.persist(member);
+
+            Member findMember = em.find(Member.class, member.getId());
+            //Collection 들이 지연로딩임을 알 수 있다.
+            //기본값이 LAZY 로 되어있다.
 
             tx.commit();
         } catch (Exception e){
