@@ -26,21 +26,11 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            List<Team> result = em.createQuery("select m.team from Member m", Team.class)
+            List<Member> result = em.createQuery("select m from Member m order by m.age desc", Member.class)
+                    .setFirstResult(0)
+                    .setMaxResults(10)
                     .getResultList();
-            // 엔티티 프로젝션 중 자동으로 join이 일어나는 경우
-
-            List<Address> result2 = em.createQuery("select o.address from Order o", Address.class)
-                    .getResultList();
-            //임베디드 타입 프로젝션
-
-            List<String> result3 = em.createQuery("select m.username from Member m", String.class)
-                    .getResultList();
-            //스칼라 타입 ! Int 도 됨 !!
-
-            List<MemberDTO> result4 = em.createQuery("select distinct new jpql.MemberDTO(m.username, m.age) from Member m", MemberDTO.class)
-                    .getResultList();
-            //***** 생성자가 반드시 있는 DTO 를 통해서 값을 가져오는 방법 *****
+            //페이징기법 사용 : 0번째부터 시작해서 총 LIMIT 10 개를 가져온다.
 
 
 
