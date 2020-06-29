@@ -45,13 +45,16 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m from Member m join fetch m.team";
-            List<Member> result = em.createQuery(query, Member.class)
+            String query = "select t from Team t join fetch t.members";
+            //일대다 관계에서 다Collection을 가져오는 경우 무조건 뻥튀기가 된다. 그렇기 때문에 주의해야한다.
+            List<Team> result = em.createQuery(query, Team.class)
                     .getResultList();
 
-            for(Member i : result){
-                System.out.println("member = " + i.getUsername() + ", " + i.getTeam().getName());
-                //쿼리가 한번 나갈때 모두 다 가져오게 된다.
+            for(Team team : result){
+                System.out.println("member = " + team.getName() + "| members = " + team.getMembers().size());
+                for(Member member : team.getMembers()){
+                    System.out.println("-> member = " + member.getId());
+                }
             }
 
             tx.commit();
