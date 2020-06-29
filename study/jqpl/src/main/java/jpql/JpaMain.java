@@ -45,8 +45,10 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select t from Team t join fetch t.members";
-            //일대다 관계에서 다Collection을 가져오는 경우 무조건 뻥튀기가 된다. 그렇기 때문에 주의해야한다.
+            String query = "select distinct t from Team t join fetch t.members";
+            //중복을 제거하려면 Distinct 를 추가하면된다. JPQL의 distinct는 SQL의 distinct와, 객체의 distinct를 제공한다.
+            //DB입장에서 보면 원칙상 위에 distinct 는 team.member 가 제거될수 없다 데이터가 완전중복되지 않기 때문.
+            //하지만 JPQL에서는 객체단위로도 distinct를 하기 때문에 가능한 일이 된다.
             List<Team> result = em.createQuery(query, Team.class)
                     .getResultList();
 
