@@ -45,13 +45,13 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
-                    .setParameter("username", "회원1")
-                    .getResultList();
+            int resultCount = em.createQuery("update Member m set m.age = 20")
+                    .executeUpdate();
+            //벌크연산 : 모든 멤버의 나이를 20살로 바꾼다. .executeUpdate() 를 통해 실행.
+            //벌크연산은 영속성 컨텍스트를 무시하고 DB에 직접 쿼리하기 때문에 주의해야 한다.
+            //벌크연산을 먼저 실행하거나, 벌크연산 실행후 flush를 하거나 로 해결 가능하다.
 
-            for(Member member : resultList){
-                System.out.println("member = " + member.getId());
-            }
+            System.out.println(resultCount);
 
             tx.commit();
         } catch (Exception e){
