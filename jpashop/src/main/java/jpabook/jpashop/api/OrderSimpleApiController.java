@@ -1,13 +1,18 @@
 package jpabook.jpashop.api;
 
+import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * xToOne(ManyToOne, OneToOne)
@@ -36,5 +41,39 @@ public class OrderSimpleApiController {
             order.getDelivery().getAddress(); //Lazy 강제 초기화
         }
         return all;
+    }
+
+    /**
+     * DTO로 변환해 Entity를 직접 노출시키지 않는 문제는 해결했지만, 최적화가 되지 않는다 (연관된 호출이 너무 많음 : Member, Address)
+     * 중요한건 orders 를 가져올때 1번 쿼리가 나가므로 2개를 가져온다.
+     * 하지만 이후 이 2개가 각각 2번의 result, 즉 각자의 LAZY 로딩이 발생. 결국  1 + 회원 N + 배송 N 문제가 생긴다. 총 5개의 쿼리가 발생.
+     * 이 문제는 fetch join 으로 해결이 가능하다.
+     */
+    @GetMapping("/api/v2/simple-orders")
+    public List<SimpleOrderDTO> ordersV2(){
+        List<Order> orders = orderRepository.findAllByString(new OrderSearch());
+
+        List<SimpleOrderDTO> result = orders.stream()
+                .map(o -> new SimpleOrderDTO(o))
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
+    @Data
+    static class SimpleOrderDTO{
+        private long orderId;
+        private String name;
+        private LocalDateTime orderDate;
+        private OrderStatus orderStatus;
+        private Address address;
+
+        public SimpleOrderDTO(Order order) {
+            orderId = order.getId();
+            name = order.getMember().getName(); //LAZY 초기화
+            orderDate = order.getOrderDate();
+            orderStatus = order.getStatus();
+            address = order.getDelivery().getAddress(); //LAZY 초기화
+        }
     }
 }
