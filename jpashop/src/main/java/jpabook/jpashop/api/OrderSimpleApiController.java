@@ -60,6 +60,21 @@ public class OrderSimpleApiController {
         return result;
     }
 
+    /**
+     * Fetch Join 으로 단 한번의 쿼리로 모두 완료할수 있게된다.
+     * 실무에서 정말 자주 사용하는 기법이다.
+     * 하지만 모든 Entity를 다 조회하기 위해 조인해야되는 단점이 있다.
+     */
+    @GetMapping("/api/v3/simple-orders")
+    public List<SimpleOrderDTO> ordersV3(){
+        List<Order> orders = orderRepository.findAllWithMemberDelivery();
+        List<SimpleOrderDTO> result = orders.stream()
+                .map(o -> new SimpleOrderDTO(o))
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
     @Data
     static class SimpleOrderDTO{
         private long orderId;
