@@ -5,6 +5,7 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
+import jpabook.jpashop.repository.OrderSimpleQueryDTO;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,6 +74,16 @@ public class OrderSimpleApiController {
                 .collect(Collectors.toList());
 
         return result;
+    }
+
+    /**
+     * 결국 이것을 가져올때 별도의 DTO(VO) 를 만들어서 Service -> Repository -> em -> DTO로 바로 조회를 한다.
+     * 결과적으로 말하자면 JPA의 성능최적화는 "Mybatis 화" 라고 할 수도 있다.!
+     * 하지만 V3 -> V4는 성능에서 차이가 많이 나진 않는다.
+     */
+    @GetMapping("/api/v4/simple-orders")
+    public List<OrderSimpleQueryDTO> ordersV4(){
+        return orderRepository.findOrderDTOs();
     }
 
     @Data
